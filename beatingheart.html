@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>beatingheart</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        /* 充满全屏-父级！！ */
+        html,body{
+            height: 100%;
+            width: 100%;
+        }
+        body{
+            background-color: pink;
+            /* 弹性盒模型 水平和垂直方向都居中 */
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            /* 此时无法做到垂直居中，因为高度不存在 */
+            justify-content: center;
+        }
+        .heart{
+            background-color: red;
+            width: 200px;
+            height: 200px;
+            position: relative;
+            transform: rotate(45deg);
+            animation: beatingheart 1s infinite alternate;
+            box-shadow: 0 0 30px red;
+        }
+        .heart::before{
+            content:"";
+            width: 200px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+            /* 让半圆与正方形重合（-100变-99），避免元素中间出现细线 */
+            top: -99px;
+            left: 0;
+            border-radius: 100px 100px 0 0;
+            box-shadow: 0 0 30px red;
+        }
+        .heart::after{
+            content:"";
+            width: 100px;
+            height: 200px;
+            background-color: red;
+            position: absolute;
+            top: 0px;
+            left: -99px;
+            border-radius: 100px 0 0 100px;
+            box-shadow: 0 0 30px red;
+        }
+        .p1{
+            transform: rotate(-45deg);
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 25px;
+            color:aliceblue;
+        }
+        /* 利用动画，实现跳动的心 */
+        @keyframes beatingheart {
+            0%{
+                transform: rotate(45deg) scale(0.6);
+            }
+            /* 中间过程不必加 会卡卡的 */
+            /* 25%{
+                transform: rotate(45deg) scale(0.8);
+            }
+            50%{
+                transform: rotate(45deg) scale(1);
+            }
+            75%{
+                transform: rotate(45deg) scale(1.2);
+            } */
+            100%{
+                transform: rotate(45deg) scale(1.4);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="heart">
+        <p class="p1">seonhwa,I love you</p>
+    </div>
+    
+</body>
+</html>
